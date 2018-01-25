@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Lokal;
 use App\Obrok;
 use App\User;
+use App\Order;
 
 class GetterController extends Controller {
 
@@ -23,12 +24,12 @@ class GetterController extends Controller {
             $sqlObject->Ime = strtolower($input['ime']);
             $sqlObject->Opis = $input['opis'];
 
-            $status = $sqlObject->save();
-
-            if ($status != 1) {
+            try {
+                $sqlObject->save();
+            } catch (\Illuminate\Database\QueryException $exc) {
+                $status = $exc->getCode();
                 return response()->json(array(
-                            "error" => true,
-                            "message" => "sql insertion failed"
+                            'message' => $status
                 ));
             }
         }
@@ -61,12 +62,12 @@ class GetterController extends Controller {
 
 //
 
-            $status = $sqlObject->save();
-
-            if ($status != 1) {
+            try {
+                $sqlObject->save();
+            } catch (\Illuminate\Database\QueryException $exc) {
+                $status = $exc->getCode();
                 return response()->json(array(
-                            "error" => true,
-                            "message" => "sql insertion failed"
+                            'message' => $status
                 ));
             }
         }
@@ -91,7 +92,7 @@ class GetterController extends Controller {
         $this->validate($request, [
             'ime' => 'required',
             'prezime' => 'required',
-            'email' => 'required',
+            'email' => 'required|string|email|max:255',
             'password' => 'required'
         ]);
 
@@ -102,17 +103,16 @@ class GetterController extends Controller {
         $sqlObject->email = $input['email'];
         $sqlObject->password = hash("sha256", $input['password']);
 
-
-        $status = $sqlObject->save();
-
-        if ($status != 1) {
+        try {
+            $sqlObject->save();
+        } catch (\Illuminate\Database\QueryException $exc) {
+            $status = $exc->getCode();
             return response()->json(array(
-                        "error" => true,
-                        "message" => "sql insertion failed"
+                        'message' => $status
             ));
         }
 
-        return response()->json(array(
+        return response()->json(array(                    
                     "message" => "sql insertion SUCCESSFUL"
         ));
     }
@@ -131,12 +131,12 @@ class GetterController extends Controller {
             $sqlObject->user_id = $input['user_id'];
             $sqlObject->prilozi = $input['prilozi'];
 
-            $status = $sqlObject->save();
-
-            if ($status != 1) {
+            try {
+                $sqlObject->save();
+            } catch (\Illuminate\Database\QueryException $exc) {
+                $status = $exc->getCode();
                 return response()->json(array(
-                            "error" => true,
-                            "message" => "sql insertion failed"
+                            'message' => $status
                 ));
             }
         }
