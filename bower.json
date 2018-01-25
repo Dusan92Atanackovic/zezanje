@@ -1,0 +1,25 @@
+{
+  "name": "angulara",
+  "description": "test",
+  "main": "",
+  "authors": [
+    "Dusan92Atanackovic <dusan.atanackovic@veritek-global.com>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.8",
+    "angular-route": "~1.4.6",
+    "angular-ui-router": "~0.2.16",
+    "restangular": "^1.5.2",
+    "bootstrap": "^3.3.7",
+    "ngWYSIWYG": "^0.6.2"
+  }
+}
