@@ -35,3 +35,7 @@ Route::post('/get_lokals','GetterController@getLokals');
 
 Route::post('/add_obrok', 'GetterController@addObrok');
 Route::post('/get_obroks', 'GetterController@getObroks');
+
+Route::post('/add_user', 'GetterController@addUser');
+
+Route::post('/add_order', 'GetterController@addOrder');
