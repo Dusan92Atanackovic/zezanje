@@ -1,28 +1,57 @@
 (function () {
     'use strict';
     angular
-        .module('app.pages.index')
-        .controller("IndexController", IndexController);
+            .module('app.pages.index')
+            .controller("IndexController", IndexController);
 
     /** @ngInject */
     /* @Controller */
 
-    function IndexController($http){
+    function IndexController($http) {
         var vm = this;
-        vm.atana = "Atana je car";
+        vm.lokal = "";
+        vm.obrok = "";
+        vm.qrac = "";
 
+        vm.logMe = function () {
+            console.log('log me');
+        };
+        vm.google = function () {
+            var win = window.open("/#/landing");
+            win.focus();
+        };
+        vm.lokals = function () {
 
-        vm.logMe = function(){
-          console.log('log me');
+            $http.post('/api/get_lokals').success(function (response) {
+                vm.lokal = response;
+            });
         };
-        vm.google = function(){
-          var win = window.open("/#/landing");
-          win.focus();
+        vm.obroks = function () {
+
+            $http.post('/api/get_obroks').success(function (response) {
+                
+                vm.obrok = response;
+                vm.qrac = response;
+               
+
+            });
+
         };
-        vm.rest = function () {
-          $http.get('/api/test').success(function (response) {
-              vm.atana = response;
-          });
+
+        vm.sift = function (lokal) {
+            vm.qrac = vm.obrok;
+            var l = vm.obrok.length;
+            var temp = [];
+            for (var i = 0; i < l; i++) {
+                if (vm.obrok[i]['lokal'] == lokal) {
+                    temp.push(vm.obrok[i]);
+                }
+            }
+            if(lokal == "#"){
+                temp = vm.obrok;
+            }
+            vm.qrac = temp;
+
         };
 
     }

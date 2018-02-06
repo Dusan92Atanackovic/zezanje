@@ -39,9 +39,23 @@ class GetterController extends Controller {
     }
 
     public function getLokals() {
-        $lokal = Lokal::all();
+        $sqlObject = Lokal::all();
+        $finalData = array();
 
-        return $lokal;
+        foreach ($sqlObject as $obr) {
+
+
+            $obrok = array(
+                "id" => $obr['id'],
+                "ime" => $obr['Ime'],                
+                "opis" => $obr['Opis']
+            );
+            array_push($finalData, $obrok);
+        }
+
+
+//        return $sqlObject;
+        return $finalData;
     }
 
     public function addObrok(Request $request) {
@@ -77,9 +91,25 @@ class GetterController extends Controller {
     }
 
     public function getObroks() {
-        $sqlObject = Lokal::all();
+        $sqlObject = Obrok::all();
+        $finalData = array();
 
-        return $sqlObject;
+        foreach ($sqlObject as $obr) {
+
+
+            $obrok = array(
+                "id" => $obr['id'],
+                "ime" => $obr['ime'],
+                "lokal" => Lokal::where("id",$obr['lokal_id'])->first()->Ime,
+                "cena" => $obr['cena'],
+                "opis" => $obr['opis']
+            );
+            array_push($finalData, $obrok);
+        }
+
+
+//        return $sqlObject;
+        return $finalData;
     }
 
     public function addUser(Request $request) {
@@ -112,7 +142,7 @@ class GetterController extends Controller {
             ));
         }
 
-        return response()->json(array(                    
+        return response()->json(array(
                     "message" => "sql insertion SUCCESSFUL"
         ));
     }
@@ -139,6 +169,47 @@ class GetterController extends Controller {
                             'message' => $status
                 ));
             }
+        }
+        return response()->json(array(
+                    "message" => "sql insertion SUCCESSFUL"
+        ));
+    }
+
+    public function getOrders(Request $request) {
+        $input = $request->input();
+        $userId = (int) $input['user_id'];
+
+
+
+//        $sqlObject = Order::whereUser_id(strtolower($input['user_id']));
+        $sqlObject = Order::where("user_id", $userId)->get();
+
+        return $sqlObject;
+    }
+
+    public function delOrder(Request $request) {
+        if (empty($request->input())) {
+            return response()->json(array(
+                        "error" => true,
+                        "message" => "input false"
+            ));
+        }
+
+        $input = $request->input();
+        $userId = $input['user_id'];
+
+
+        //---------------------------------------------------------------------
+        //
+        //--------------------------------------------------------------------
+
+        try {
+            Order::where("user_id", $userId)->delete();
+        } catch (\Illuminate\Database\QueryException $exc) {
+            $status = $exc->getCode();
+            return response()->json(array(
+                        'message' => $status
+            ));
         }
         return response()->json(array(
                     "message" => "sql insertion SUCCESSFUL"
