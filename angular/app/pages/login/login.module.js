@@ -1,20 +1,20 @@
 (function () {
     'use strict';
 
-    angular.module('app.pages.index', ['ui.router', 'smart-table'])
+    angular.module('app.pages.login', ['ui.router'])
             .config(routeConfig);
 
     function routeConfig($stateProvider) {
         $stateProvider
-            .state('/', {
-                url: '/',
+            .state('/login', {
+                url: '/login',
                 // views: {
                 //     main: {
                 //         templateUrl: 'views/pages/index/index.html'
                 //     }
                 // },
-                templateUrl: 'views/pages/index/index.html',
-                controller: "IndexController as index"
+                templateUrl: 'views/pages/login/login.html',
+                controller: "LoginController as login"
 
             });
     }

@@ -1,4 +1,84 @@
 
+<span ng-init="index.obroks()" ></span>
+<span ng-init="index.lokals()" ></span>
 
 
-  atana je car
+<!--<table st-table="rowCollection" class="table table-striped"> 
+    <thead>
+        <tr>
+            <th>ime</th>
+            <th>lokal</th>
+            <th>opis</th>
+            <th>cena</th>
+            <th>DODAJ</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="row in index.qrac">
+            <td>{{row['ime']}}</td> 
+            <td>{{row['lokal']}}</td>
+            <td>{{row['opis']}}</td>
+            <td>{{row['cena']}}</td>
+            <td><button class="btn-block btn-xs">></button></td>
+
+        </tr>
+    </tbody>
+</table>-->
+
+    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+        <a class="navbar-brand col-sm-3 col-md-5 col-lg-3 mr-0" href="#">Veritek food listing  <span class="sofija_stop">!!! Sofija STOP !!!</span></a>
+        <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search" style='margin-left:12px;'>
+        <ul class="navbar-nav px-3">
+            <li class="nav-item text-nowrap">
+                <a class="nav-link" href="#">Sign out</a>
+            </li>
+        </ul>
+    </nav>
+
+
+    <div class="row ">
+        <div class="col-xs-3 col-md-2  col-lg-2 navbarContainer">            
+            <button class="btn btn-default navbarButton"                                ng-click="index.sift('sve')"> Sve </button>  
+            <button class="btn btn-default navbarButton" ng-repeat="row in index.lokal" ng-click="index.sift(row['ime'])">{{ row['ime']}} </button>             
+        </div>   
+      
+      
+        <div class="col-sm-9 col-md-10  col-lg-10 pt-3 px-4">
+
+            <h2>{{index.selected}}</h2>
+            
+
+		<table st-table="rowCollection" st-safe-src="index.qrac" class="table table-striped">
+			<thead>
+			<tr>
+				<th st-sort="firstName">ime</th>
+				<th st-sort="lastName">lokal</th>
+				<th st-sort="birthDate">opis</th>
+				<th st-sort="balance">cena</th>
+			</tr>
+			<tr>
+				<th colspan="5"><input st-search="ime" class="form-control" placeholder="search ..." type="search"/></th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr ng-repeat="row in rowCollection">
+				<td>{{row.ime}}</td>
+				<td>{{row.lokal}}</td>
+				<td>{{row.opis}}</td>
+				<td>{{row.cena}}</td>
+				<td>
+				<button type="button" ng-click="removeItem(row)" class="btn btn-sm btn-danger">
+					<i class="glyphicon glyphicon-remove-circle"></i>
+				</button>
+				</td>
+			</tr>
+			</tbody>
+		</table> 
+
+            </div>
+            
+            
+        </div>
+        
+    </div>

@@ -2,8 +2,24 @@
 // injector
 // endinjector
 
-$blue : green;
-$red : red;
-.blue-color {
-  color: $blue;
+$navbarBackground : #eeeeee;
+$navbarButtonBackGround : #6aa8a9;
+
+
+.sofija_stop{
+    color: red;
 }
+.navbarContainer{
+    background-color: $navbarBackground;
+}
+.navbarButton{
+    width: 100%;
+    margin-top: 5px;
+    background-color: $navbarButtonBackGround;
+    display: block;
+    margin-left: 5px;
+    
+    > a{
+        color:black;
+    }
+} 

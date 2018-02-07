@@ -26,7 +26,7 @@ use Illuminate\Http\Request;
 //});
 //Route::get('test', 'TestController@show');
 
-
+Route::post('/auth', 'AuthController@authenticate');
 
 
 
@@ -35,3 +35,11 @@ Route::post('/get_lokals','GetterController@getLokals');
 
 Route::post('/add_obrok', 'GetterController@addObrok');
 Route::post('/get_obroks', 'GetterController@getObroks');
+
+Route::post('/add_user', 'GetterController@addUser');
+
+Route::post('/add_order', 'GetterController@addOrder');
+Route::post('/get_orders', 'GetterController@getOrders');
+
+Route::post('/send_order', 'GetterController@delOrder');
+
