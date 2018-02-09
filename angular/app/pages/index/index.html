@@ -1,31 +1,9 @@
-<div class="center-block"><h1 class="sofija_stop"> !!! SOFIJA STOP !!!</h1></div>
+
 <span ng-init="index.obroks()" ></span>
 <span ng-init="index.lokals()" ></span>
 
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#" ng-click="index.sift('#')">LOKAL</a>
-        </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav" ng-repeat="row in index.lokal">
-                <li><a href="#" ng-click="index.sift(row['ime'])">{{ row['ime']}} <span class="sr-only">(current)</span></a></li>
-                
-            </ul>                       
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-</nav>
-
-<table st-table="rowCollection" class="table table-striped">
+<!--<table st-table="rowCollection" class="table table-striped"> 
     <thead>
         <tr>
             <th>ime</th>
@@ -38,7 +16,7 @@
     </thead>
     <tbody>
         <tr ng-repeat="row in index.qrac">
-            <td>{{row['ime']}}</td>
+            <td>{{row['ime']}}</td> 
             <td>{{row['lokal']}}</td>
             <td>{{row['opis']}}</td>
             <td>{{row['cena']}}</td>
@@ -46,4 +24,61 @@
 
         </tr>
     </tbody>
-</table>
+</table>-->
+
+    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+        <a class="navbar-brand col-sm-3 col-md-5 col-lg-3 mr-0" href="#">Veritek food listing  <span class="sofija_stop">!!! Sofija STOP !!!</span></a>
+        <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search" style='margin-left:12px;'>
+        <ul class="navbar-nav px-3">
+            <li class="nav-item text-nowrap">
+                <a class="nav-link" href="#">Sign out</a>
+            </li>
+        </ul>
+    </nav>
+
+
+    <div class="row ">
+        <div class="col-xs-3 col-md-2  col-lg-2 navbarContainer">            
+            <button class="btn btn-default navbarButton"                                ng-click="index.sift('sve')"> Sve </button>  
+            <button class="btn btn-default navbarButton" ng-repeat="row in index.lokal" ng-click="index.sift(row['ime'])">{{ row['ime']}} </button>             
+        </div>   
+      
+      
+        <div class="col-sm-9 col-md-10  col-lg-10 pt-3 px-4">
+
+            <h2>{{index.selected}}</h2>
+            
+
+		<table st-table="rowCollection" st-safe-src="index.qrac" class="table table-striped">
+			<thead>
+			<tr>
+				<th st-sort="firstName">ime</th>
+				<th st-sort="lastName">lokal</th>
+				<th st-sort="birthDate">opis</th>
+				<th st-sort="balance">cena</th>
+			</tr>
+			<tr>
+				<th colspan="5"><input st-search="ime" class="form-control" placeholder="search ..." type="search"/></th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr ng-repeat="row in rowCollection">
+				<td>{{row.ime}}</td>
+				<td>{{row.lokal}}</td>
+				<td>{{row.opis}}</td>
+				<td>{{row.cena}}</td>
+				<td>
+				<button type="button" ng-click="removeItem(row)" class="btn btn-sm btn-danger">
+					<i class="glyphicon glyphicon-remove-circle"></i>
+				</button>
+				</td>
+			</tr>
+			</tbody>
+		</table> 
+
+            </div>
+            
+            
+        </div>
+        
+    </div>

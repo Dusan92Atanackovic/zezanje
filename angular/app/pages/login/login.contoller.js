@@ -11,7 +11,7 @@
         var vm = this;
         
         vm.login = function () {
-             $http.post('/api/get_obroks',).success(function (response) {
+             $http.post('/api/get_obroks').success(function (response) {
                 
                 vm.obrok = response;
                 vm.qrac = response;

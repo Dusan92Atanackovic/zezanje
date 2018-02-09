@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('app.pages.index', ['ui.router'])
+    angular.module('app.pages.index', ['ui.router', 'smart-table'])
             .config(routeConfig);
 
     function routeConfig($stateProvider) {
