@@ -26,7 +26,7 @@ use Illuminate\Http\Request;
 //});
 //Route::get('test', 'TestController@show');
 
-Route::post('/auth', 'AuthController@authenticate');
+//Route::post('/auth', 'AuthController@authenticate');
 
 
 

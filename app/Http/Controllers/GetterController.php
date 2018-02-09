@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\Lokal;
 use App\Obrok;
 use App\User;
@@ -47,7 +48,7 @@ class GetterController extends Controller {
 
             $obrok = array(
                 "id" => $obr['id'],
-                "ime" => $obr['Ime'],                
+                "ime" => $obr['Ime'],
                 "opis" => $obr['Opis']
             );
             array_push($finalData, $obrok);
@@ -100,7 +101,7 @@ class GetterController extends Controller {
             $obrok = array(
                 "id" => $obr['id'],
                 "ime" => $obr['ime'],
-                "lokal" => Lokal::where("id",$obr['lokal_id'])->first()->Ime,
+                "lokal" => Lokal::where("id", $obr['lokal_id'])->first()->Ime,
                 "cena" => $obr['cena'],
                 "opis" => $obr['opis']
             );
@@ -113,6 +114,7 @@ class GetterController extends Controller {
     }
 
     public function addUser(Request $request) {
+
         if (empty($request->input())) {
             return response()->json(array(
                         "error" => true,
@@ -125,7 +127,7 @@ class GetterController extends Controller {
             'email' => 'required|string|email|max:255',
             'password' => 'required'
         ]);
-
+        //print_r('test');die;
         $input = $request->input();
         $sqlObject = new User;
         $sqlObject->ime = $input['ime'];
