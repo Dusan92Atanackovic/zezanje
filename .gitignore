@@ -2,4 +2,6 @@ bower_components/
 vendor/
 nbproject/
 node_modules/
-public/
+public/css/
+public/js/
+public/views/
