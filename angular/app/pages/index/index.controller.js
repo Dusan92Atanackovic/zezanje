@@ -21,18 +21,18 @@
             var win = window.open("/#/landing");
             win.focus();
         };
-        
+
         vm.lokals = function () {
 
             $http.post('/api/get_lokals').success(function (response) {
                 vm.lokal = response;
             });
         };
-        
+
         vm.obroks = function () {
 
             $http.post('/api/get_obroks').success(function (response) {
-                
+
                 vm.obrok = response;
                 vm.qrac = response;
             });
@@ -49,11 +49,17 @@
                     temp.push(vm.obrok[i]);
                 }
             }
-            if(lokal === "sve"){
+            if (lokal === "sve") {
                 temp = vm.obrok;
             }
             vm.qrac = temp;
 
+        };
+        vm.addFood = function () {
+            $http.get('/api/tester').success(function (response) {
+                console.log(response);
+
+            });
         };
 
     }

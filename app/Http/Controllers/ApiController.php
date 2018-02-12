@@ -16,7 +16,7 @@ class ApiController extends Controller
 
       // print_r("nesto");die;
       $this->user = new User;
-      print_r("nesto");
+//      print_r("nesto");
       // die;
 
   }
@@ -47,9 +47,9 @@ class ApiController extends Controller
   }
 
   public function getAuthUser(Request $request){
-    print_r("nesto");die;
+//    print_r("nesto");die;
       $user = JWTAuth::toUser($request->token);
-      return response()->json(['result' => $user]);
+      return response()->json(['result' => $user->only('id', 'ime', 'email')]);
       // return true;
   }
 
