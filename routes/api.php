@@ -28,10 +28,10 @@ use Illuminate\Http\Request;
 
 
 
-Route::post('/add_lokal', 'GetterController@addLokal');
+
 Route::post('/get_lokals', 'GetterController@getLokals');
 
-Route::post('/add_obrok', 'GetterController@addObrok');
+
 Route::post('/get_obroks', 'GetterController@getObroks');
 
 Route::post('/add_user', 'GetterController@addUser');
@@ -51,8 +51,10 @@ Route::group(['middleware' => ['api']], function () {
         Route::post('user', 'ApiController@getAuthUser');
 
         Route::post('/tester', "GetterController@tester");
-
-
+        
+        Route::post('/add_obrok', 'GetterController@addObrok');
+        Route::post('/add_lokal', 'GetterController@addLokal');
+        Route::post('/add_user', 'GetterController@addUser');
         Route::post('/add_order', 'GetterController@addOrder');
     });
 });
