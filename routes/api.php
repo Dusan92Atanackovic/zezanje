@@ -36,7 +36,7 @@ Route::post('/get_obroks', 'GetterController@getObroks');
 
 Route::post('/add_user', 'GetterController@addUser');
 
-Route::post('/add_order', 'GetterController@addOrder');
+
 Route::post('/get_orders', 'GetterController@getOrders');
 
 Route::post('/send_order', 'GetterController@delOrder');
@@ -50,12 +50,15 @@ Route::group(['middleware' => ['api']], function () {
     Route::group(['middleware' => 'jwt.auth'], function () {
         Route::post('user', 'ApiController@getAuthUser');
 
-       
+        Route::post('/tester', "GetterController@tester");
+
+
+        Route::post('/add_order', 'GetterController@addOrder');
     });
 });
 
 
-Route::post('/tester', "GetterController@tester");
+
 
 
 

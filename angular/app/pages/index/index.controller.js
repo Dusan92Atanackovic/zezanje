@@ -55,8 +55,8 @@
             vm.qrac = temp;
 
         };
-        vm.addFood = function () {
-            $http.get('/api/tester').success(function (response) {
+        vm.addFood = function (obrok) {
+            $http.get('/api/add_order').success(function (response) {
                 console.log(response);
 
             });

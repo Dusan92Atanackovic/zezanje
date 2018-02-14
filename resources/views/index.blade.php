@@ -66,7 +66,7 @@
             }
         </style>
     </head>
-    <body>
+    <body style="background-image:url('res/bg.jpeg')">
         <div class="navbar-fixed-top">
 
             @if (Route::has('login'))
