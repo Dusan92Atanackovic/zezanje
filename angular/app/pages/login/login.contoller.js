@@ -11,10 +11,10 @@
         var vm = this;
         
         vm.login = function () {
-             $http.post('/api/get_obroks').success(function (response) {
+             $http.post('/login',{"email":vm.username,"password":vm.password}).success(function (response) {
                 
-                vm.obrok = response;
-                vm.qrac = response;
+                
+               console.log(response);
                
 
             });

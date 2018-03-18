@@ -3,12 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Request as header;
+use Illuminate\Support\Facades\Auth;
 use App\Lokal;
 use App\Obrok;
 use App\User;
 use App\Order;
+use JWTAuth;
 
 class GetterController extends Controller {
+
+    public function __construct() {
+        
+    }
 
     public function addLokal(Request $request) {
         if (empty($request->input())) {
@@ -47,7 +54,7 @@ class GetterController extends Controller {
 
             $obrok = array(
                 "id" => $obr['id'],
-                "ime" => $obr['Ime'],                
+                "ime" => $obr['Ime'],
                 "opis" => $obr['Opis']
             );
             array_push($finalData, $obrok);
@@ -100,7 +107,7 @@ class GetterController extends Controller {
             $obrok = array(
                 "id" => $obr['id'],
                 "ime" => $obr['ime'],
-                "lokal" => Lokal::where("id",$obr['lokal_id'])->first()->Ime,
+                "lokal" => Lokal::where("id", $obr['lokal_id'])->first()->Ime,
                 "cena" => $obr['cena'],
                 "opis" => $obr['opis']
             );
@@ -113,6 +120,7 @@ class GetterController extends Controller {
     }
 
     public function addUser(Request $request) {
+
         if (empty($request->input())) {
             return response()->json(array(
                         "error" => true,
@@ -125,7 +133,7 @@ class GetterController extends Controller {
             'email' => 'required|string|email|max:255',
             'password' => 'required'
         ]);
-
+        //print_r('test');die;
         $input = $request->input();
         $sqlObject = new User;
         $sqlObject->ime = $input['ime'];
@@ -148,6 +156,12 @@ class GetterController extends Controller {
     }
 
     public function addOrder(Request $request) {
+        $header = explode(" ", header::header("Authorization"))[1];
+        $user = JWTAuth::toUser($header);
+//        print_r($user->id);die;
+        
+        
+        
         if (empty($request->input())) {
             return response()->json(array(
                         "error" => true,
@@ -158,9 +172,10 @@ class GetterController extends Controller {
 
             $sqlObject = new Order;
             $sqlObject->obrok_id = $input['obrok_id'];
-            $sqlObject->user_id = $input['user_id'];
+            $sqlObject->user_id = $user->id;
             $sqlObject->prilozi = $input['prilozi'];
-
+//           
+            
             try {
                 $sqlObject->save();
             } catch (\Illuminate\Database\QueryException $exc) {
@@ -214,6 +229,14 @@ class GetterController extends Controller {
         return response()->json(array(
                     "message" => "sql insertion SUCCESSFUL"
         ));
+    }
+
+    public function tester(Request $request) {
+        $header = explode(" ", header::header("Authorization"))[1];
+
+
+        $user = JWTAuth::toUser($header);
+        return response()->json(['result' => $user->only('id', 'ime', 'email')]);
     }
 
 }

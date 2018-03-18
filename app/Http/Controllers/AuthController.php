@@ -3,57 +3,46 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Validator;
+use App\Http\Controllers\Controller;
+//use App\Http\Requests;
 use JWTAuth;
+use JWTAuthException;
+use App\User;
 
-class AuthController extends Controller {
-
-    /**
-     * Authenticate an user.
-     *
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function authenticate(Request $request) {
-        $credentials = $request->only('email', 'password');
-
-
-        $validator = Validator::make($credentials, [
-                    'email' => 'required|email',
-                    'password' => 'required'
-        ]);
-//        $credentials['password'] = hash("sha256", $credentials['password']);
-
-//        print_r($credentials);
-//        die;
-        if ($validator->fails()) {
-            return response()
-                            ->json([
-                                'code' => 1,
-                                'message' => 'Validation failed.',
-                                'errors' => $validator->errors()
-                                    ], 422);
-        }
-
-        $token = JWTAuth::attempt($credentials);
-       
-        if ($token) {
-            return response()->json(['token' => $token]);
-        } else {
-            return response()->json(['code' => 2, 'message' => 'Invalid credentials.'], 401);
-        }
-    }
-
-    /**
-     * Get the user by token.
-     *
-     * @param  Request  $request
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function getUser(Request $request) {
-        JWTAuth::setToken($request->input('token'));
-        $user = JWTAuth::toUser();
-        return response()->json($user);
-    }
+class ApiController extends Controller {
+//
+//    public function __construct() {
+//        $this->user = new User;
+//    }
+//
+//    public function login(Request $request) {
+//        $credentials = $request->only('email', 'password');
+//        $token = null;
+//        try {
+//            if (!$token = JWTAuth::attempt($credentials)) {
+//                return response()->json([
+//                            'response' => 'error',
+//                            'message' => 'invalid_email_or_password',
+//                ]);
+//            }
+//        } catch (JWTAuthException $e) {
+//            return response()->json([
+//                        'response' => 'error',
+//                        'message' => 'failed_to_create_token',
+//            ]);
+//        }
+//        return response()->json([
+//                    'response' => 'success',
+//                    'result' => [
+//                        'token' => $token,
+//                    ],
+//        ]);
+//    }
+//
+//    public function getAuthUser(Request $request) {
+//        $user = JWTAuth::toUser($request->token);
+//        
+//        return response()->json(['result' => $user]);
+//    }
 
 }
