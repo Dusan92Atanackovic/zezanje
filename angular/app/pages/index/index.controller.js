@@ -7,16 +7,21 @@
     /** @ngInject */
     /* @Controller */
 
-    function IndexController($http) {
+    function IndexController($http, $state) {
         var vm = this;
         vm.lokal = "";
         vm.obrok = "";
         vm.qrac = "";
         vm.selected = 'sve';
 
-        vm.logMe = function () {
-            console.log('log me');
+        vm.login = function () {
+            $state.go('/login');
         };
+
+        vm.logout = function(){
+            console.log('log out');
+        };
+
         vm.google = function () {
             var win = window.open("/#/landing");
             win.focus();

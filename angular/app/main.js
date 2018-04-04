@@ -7,8 +7,8 @@ angular.module('app',
         // 'app.filters',
         // 'app.services',
         // 'app.directives',
-        'app.pages',
-        'ngWYSIWYG'
+        'app.pages'
+        
         ]);
 
     // angular.module('app.controllers', ['restangular', 'ui.router']);
