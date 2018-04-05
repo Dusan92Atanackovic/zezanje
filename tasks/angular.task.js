@@ -11,6 +11,7 @@ var ngAnnotate = require('gulp-ng-annotate');
 var notify = require('gulp-notify');
 var gulpif = require('gulp-if');
 var angularFilesort = require('gulp-angular-esmodules-filesort');
+var debug = require('gulp-debug');
 
 var Elixir = require('laravel-elixir');
 
@@ -29,6 +30,7 @@ Elixir.extend('angular', function() {
             .pipe(jshint.reporter(stylish))
             //.pipe(jshint.reporter('fail')).on('error', onError) //enable this if you want to force jshint to validate
             .pipe(gulpif(! config.production, sourcemaps.init()))
+            .pipe(debug())
             .pipe(concat('app.js'))
             .pipe(ngAnnotate())
             .pipe(gulpif(config.production, uglify()))

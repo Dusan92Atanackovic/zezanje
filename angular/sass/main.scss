@@ -1,9 +1,8 @@
 
+@import 'config.scss';
+
 // injector
 // endinjector
-
-$navbarBackground : #eeeeee;
-$navbarButtonBackGround : #6aa8a9;
 
 
 .sofija_stop{
@@ -22,8 +21,58 @@ $navbarButtonBackGround : #6aa8a9;
     > a{
         color:black;
     }
-} 
+}
 
 .default-bg{
-    background-color: #0D3349;
+    background-color: $black;
 }
+
+.green-login-input{
+  background-color: $green;
+  width: 100%;
+  border-radius: 5px;
+}
+.green-bg{
+  background-color: $green;
+}
+
+.red-bg{
+  background-color: $red;
+}
+
+.text-color-white{
+    color: $white;
+}
+
+.text-color-blue{
+    color: $blue;
+}
+
+.text-align-center{
+    margin:auto;
+}
+
+
+
+
+
+// zajeb za modale za verziju bootstrapa 4.0.0
+.fade.in {
+    opacity: 1;
+}
+.modal.in .modal-dialog {
+    -webkit-transform: translate(0, 0);
+    -o-transform: translate(0, 0);
+    transform: translate(0, 0);
+}
+
+.modal-backdrop .fade .in {
+    opacity: 0.5 !important;
+}
+
+
+.modal-backdrop.fade {
+    opacity: 0.5 !important;
+}
+
+//kraj zajeba

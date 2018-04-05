@@ -7,6 +7,7 @@ var uglify = require('gulp-uglify');
 var concat_sm = require('gulp-concat-sourcemap');
 var concat = require('gulp-concat');
 var gulpIf = require('gulp-if');
+var debug = require('gulp-debug');
 
 var Elixir = require('laravel-elixir');
 
@@ -46,6 +47,7 @@ Elixir.extend('bower', function(jsOutputFile, jsOutputFolder, cssOutputFile, css
     new Task('bower-css', function(){
         return gulp.src(baseDir + '/**/*.min.css')
             .on('error', onError)
+            // .pipe(debug())
             .pipe(concat(cssFile))
             .pipe(gulpIf(config.production, minify()))
             .pipe(gulp.dest(cssOutputFolder || config.css.outputFolder));

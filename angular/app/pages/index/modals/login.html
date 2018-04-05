@@ -1,29 +1,24 @@
-<!--<div ui-view>-->
-<br>
-dsjadjasopkdoaskdopkasopdkpoaskdopaksopdkop
-<br>
-dsjadjasopkdoaskdopkasopdkpoaskdopaksopdkop<br>
-dsjadjasopkdoaskdopkasopdkpoaskdopaksopdkop
-<br>
-dsjadjasopkdoaskdopkasopdkpoaskdopaksopdkop
-<br>
-dsjadjasopkdoaskdopkasopdkpoaskdopaksopdkop
 
-<div class="modal-content  default-bg" style="display:block !important;">
-    <div class="modal-header bg-veritek">
-        <i class="ion-android-warning modal-icon"></i><span> Please confirm removing / deleting</span>
+<div class="modal-content">
+    <div class="modal-header default-bg">
+        <i class="ion-android-warning modal-icon"></i><span class="text-color-white text-align-center"> Unesite vaše cenjeno ime</span>
     </div>
     <div class="modal-body text-center">
 
-        <p class="text-align-left color-white"> Are you sure you want to proceed with this action?</p>
-
+        <input
+                autofocus
+                class="green-login-input"
+                ng-enter="login.confirm()"
+                ng-model="login.name"
+                placeholder="unesite svoje ime, nikako tudje"
+        >
 
     </div>
+    <!--<span ng-controller="LoginController as login"></span>-->
 
     <div class="modal-footer">
-        <button type="button" class="btn btn-primary replayFormButton" ng-click="login.yes()">Yes</button>
-        <button type="button" class="btn btn-primary replayFormButton" ng-click="login.no()">No</button>
+        <button type="button" class="btn btn-primary green-bg pull-left" ng-click="login.confirm()" style="float:left; clear: both;"> confirm </button>
+        <button type="button" class="btn btn-primary red-bg pull-right " ng-click="login.cancel()"> cancel / log out </button>
     </div>
 </div>
 
-    <!--</div>-->
