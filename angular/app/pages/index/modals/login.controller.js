@@ -7,7 +7,7 @@
     /** @ngInject */
     /* @Controller */
 
-    function IndexController2( $rootScope, close) {
+    function IndexController2( $rootScope, $uibModalInstance) {
     var vm = this;
 
     vm.nesto = 'atana je car';
@@ -16,7 +16,7 @@
 
     vm.yes = function(){
         console.log('inside login controller');
-        close("Success!");
+        $uibModalInstance.close("Success!");
     };
 
     }

@@ -7,7 +7,7 @@
     /** @ngInject */
     /* @Controller */
 
-    function IndexController($http, $state) {
+    function IndexController($http, $state, $uibModal, $rootScope) {
         var vm = this;
         vm.lokal = "";
         vm.obrok = "";
@@ -15,7 +15,20 @@
         vm.selected = 'sve';
 
         vm.login = function () {
-            $state.go('/login');
+            // $state.go('/login');
+            console.log('jel zove');
+
+            $uibModal.open({
+                animation: true,
+                templateUrl: "/views/pages/index/modals/login.html",
+                size: "lg",
+                scope:$rootScope,
+                controller: 'LoginController as login',
+
+            }).result.then(function(result) {
+                console.log(result);
+            });
+
         };
 
         vm.logout = function(){

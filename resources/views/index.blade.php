@@ -14,14 +14,15 @@
 
 
     </head>
-    <body style="background-image:url('res/bg.jpeg')">
+    <body
+            {{--style="background-image:url('res/bg.jpeg')"--}}
+    >
 
         <div class="content">
             <div ui-view></div>
         </div>
 
         <script  src="/js/vendor.js"></script>
-        <script  src="/js/app.js"></script>
         <script  src="/js/app.js"></script>
         <script  src="./js/ui-bootstrap.min.js"></script>
         <script  src="./js/ui-bootstrap-tpls.min.js"></script>
