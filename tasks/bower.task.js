@@ -34,7 +34,7 @@ Elixir.extend('bower', function(jsOutputFile, jsOutputFolder, cssOutputFile, css
     };
 
     new Task('bower-js', function() {
-        return gulp.src(baseDir + '/**/*.min.js')
+        return gulp.src([baseDir + '/**/*.min.js', "!"+baseDir + 'angular-bootstrap/**/*.*'])
             .on('error', onError)
             .pipe(concat(jsFile, {sourcesContent: true}))
             .pipe(gulpIf(Elixir.config.production, uglify()))
