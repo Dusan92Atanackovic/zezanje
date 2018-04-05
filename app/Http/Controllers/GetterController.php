@@ -10,6 +10,7 @@ use App\Obrok;
 use App\User;
 use App\Order;
 use JWTAuth;
+use Illuminate\Support\Facades\Hash;
 
 class GetterController extends Controller {
 
@@ -139,7 +140,7 @@ class GetterController extends Controller {
         $sqlObject->ime = $input['ime'];
         $sqlObject->prezime = $input['prezime'];
         $sqlObject->email = $input['email'];
-        $sqlObject->password = hash("sha256", $input['password']);
+        $sqlObject->password = Hash::make($input['password']);
 
         try {
             $sqlObject->save();
@@ -156,12 +157,7 @@ class GetterController extends Controller {
     }
 
     public function addOrder(Request $request) {
-        $header = explode(" ", header::header("Authorization"))[1];
-        $user = JWTAuth::toUser($header);
-//        print_r($user->id);die;
-        
-        
-        
+
         if (empty($request->input())) {
             return response()->json(array(
                         "error" => true,
@@ -172,7 +168,6 @@ class GetterController extends Controller {
 
             $sqlObject = new Order;
             $sqlObject->obrok_id = $input['obrok_id'];
-            $sqlObject->user_id = $user->id;
             $sqlObject->prilozi = $input['prilozi'];
 //           
             

@@ -37,7 +37,7 @@ Route::post('/get_obroks', 'GetterController@getObroks');
 Route::post('/add_user', 'GetterController@addUser');
 
 
-Route::post('/get_orders', 'GetterController@getOrders');
+
 
 Route::post('/send_order', 'GetterController@delOrder');
 
@@ -54,8 +54,10 @@ Route::group(['middleware' => ['api']], function () {
         
         Route::post('/add_obrok', 'GetterController@addObrok');
         Route::post('/add_lokal', 'GetterController@addLokal');
-        Route::post('/add_user', 'GetterController@addUser');
+
         Route::post('/add_order', 'GetterController@addOrder');
+        Route::post('/get_orders', 'GetterController@getOrders');
+        Route::post('/del_order', 'GetterController@delOrder');
     });
 });
 
