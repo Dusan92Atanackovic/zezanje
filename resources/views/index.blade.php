@@ -19,7 +19,24 @@
             {{--style="background-image:url('res/bg.jpeg')"--}}
     >
 
-        <div class="content">
+
+    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0"
+         {{--style="margin-right: -20px;"--}}
+    >
+        <a class="navbar-brand col-sm-3 col-md-5 col-lg-3 mr-0" href="#">OMNITECH<span class="text-color-blue">IT</span> food listing  <span class="sofija_stop">!!! VEGAN STOP !!!</span></a>
+
+        <div class="top-right links custom-inline-block">
+
+                <a class="nav-link" href="#"  >home</a>
+
+                <a class="nav-link" href="#/orders"  >orders</a>
+        </div>
+
+    </nav>
+
+
+
+    <div class="content">
             <div ui-view></div>
         </div>
 

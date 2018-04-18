@@ -2,28 +2,6 @@
 <span ng-init="index.obroks()" ></span>
 <span ng-init="index.lokals()" ></span>
 
-    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-        <a class="navbar-brand col-sm-3 col-md-5 col-lg-3 mr-0" href="#">OMNITECH<span class="text-color-blue">IT</span> food listing  <span class="sofija_stop">!!! VEGAN STOP !!!</span></a>
-<!--        <div class="top-right links">
-            
-                <a href="/login">Login</a>
-                <a href="/register">Register</a>
-               
-            </div >-->
-            
-        <!--<input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search" style='margin-left:12px;'>-->
-        <ul class="navbar-nav px-3">
-
-			<li class="nav-item text-nowrap" ng-if="index.showUser == false">
-				<a class="nav-link" href="#" ng-click="index.login()">Sign in</a>
-			</li>
-
-			<li class="nav-item text-nowrap" ng-if="index.showUser == true">
-				<a class="nav-link" href="#" ng-click="index.login()">{{index.user}}</a>
-			</li>
-        </ul>
-    </nav>
-
 
     <div class="row ">
         <div class="col-xs-3 col-md-2  col-lg-2 navbarContainer">
@@ -32,10 +10,17 @@
         </div>
 
 
-        <div class="col-sm-9 col-md-10  col-lg-10 pt-3 px-4">
+        <div class="col-sm-9 col-md-10  col-lg-10 pt-3 px-4 ">
 
-            <h2>{{index.selected}}</h2>
+            <div class="custom-inline-block">
 
+                <h2>{{index.selected}}</h2>
+
+                <button class="btn btn-default pull-right" style="float: right" ng-click="index.login()" ng-show="index.showUser ==false" > login </button>
+                <button class="btn btn-default pull-right" style="float: right" ng-click="index.login()" ng-show="index.showUser ==true" > {{index.user}} </button>
+
+
+            </div>
 
 		<table st-table="rowCollection" st-safe-src="index.qrac" class="table table-striped">
 			<thead>
@@ -56,8 +41,9 @@
 				<td>{{row.opis}}</td>
 				<td>{{row.cena}}</td>
 				<td>
-				<button type="button" ng-click="removeItem(row)" class="btn btn-sm btn-danger">
-					<i class="glyphicon glyphicon-remove-circle"></i>
+				<button type="button" ng-click="index.mkOrder(row)" class="btn btn-sm btn-success">
+					<!--<i class="glyphicon glyphicon-remove-circle"></i>-->
+                    order
 				</button>
 				</td>
 			</tr>

@@ -7,7 +7,7 @@ angular.module('app.pages',
             'ui.bootstrap',
             'ngStorage',
             'app.pages.index',
-            'app.pages.landing',
+            'app.pages.orders',
             'app.pages.login'
         
         ])

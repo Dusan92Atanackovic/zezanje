@@ -60,14 +60,7 @@
 
         };
 
-        vm.logout = function(){
-            console.log('log out');
-        };
 
-        vm.google = function () {
-            var win = window.open("/#/landing");
-            win.focus();
-        };
 
         vm.lokals = function () {
 
@@ -86,28 +79,8 @@
 
         };
 
-        vm.sift = function (lokal) {
-            vm.selected = lokal;
-            vm.qrac = vm.obrok;
-            var l = vm.obrok.length;
-            var temp = [];
-            for (var i = 0; i < l; i++) {
-                if (vm.obrok[i].lokal === lokal) {
-                    temp.push(vm.obrok[i]);
-                }
-            }
-            if (lokal === "sve") {
-                temp = vm.obrok;
-            }
-            vm.qrac = temp;
-
-        };
-
-        vm.addFood = function (obrok) {
-            $http.get('/api/add_order').success(function (response) {
-                console.log(response);
-
-            });
+        vm.mkOrder = function(obj){
+            console.log(obj);
         };
 
     }
